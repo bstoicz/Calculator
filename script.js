@@ -33,30 +33,18 @@ buttonNine.addEventListener("click", function () {populate(9);});
 const buttonPoint = document.getElementById("point");
 buttonPoint.addEventListener("click", function () {populate(".");});
 
-const buttonAC = document.getElementById("ac");
-buttonAC.addEventListener("click", function () {
-    document.getElementById("result").innerHTML = 0;
-    resultArray = [];
-    return;
-});
 
 const buttonAdd = document.getElementById("plus");
-buttonAdd.addEventListener("click", function () {
-    if (a === null) {
-    a = parseFloat(document.getElementById("result").innerHTML);
-    document.getElementById("result").innerHTML = "";
-    resultArray = [];
-    operator = "add";
-    return; 
-    }
-    else if (b === null) {
-    b = parseFloat(document.getElementById("result").innerHTML);
-    document.getElementById("result").innerHTML = "";
-    resultArray = [];
-    operator = "add";
-    return;
-    }
-});
+buttonAdd.addEventListener("click", function () {operation("add")});
+
+const buttonMinus = document.getElementById("minus");
+buttonMinus.addEventListener("click", function () {operation("subtract")});
+
+const buttonMultiply = document.getElementById("x");
+buttonMultiply.addEventListener("click", function () {operation("multiply")});
+
+const buttonDivide = document.getElementById("divide");
+buttonDivide.addEventListener("click", function () {operation("divide")});
 
 const buttonEquals = document.getElementById("equals");
 buttonEquals.addEventListener("click", function () {
@@ -67,6 +55,27 @@ buttonEquals.addEventListener("click", function () {
     }
     a=null;
     b=null;
+});
+
+const buttonAC = document.getElementById("ac");
+buttonAC.addEventListener("click", function () {
+    document.getElementById("result").innerHTML = 0;
+    resultArray = [];
+    return;
+});
+
+const buttonPlusMinus = document.getElementById("plusminus");
+buttonPlusMinus.addEventListener("click", function () {
+    let negative = - document.getElementById("result").innerHTML;
+    update(negative);
+    return;
+});
+
+const buttonPercent = document.getElementById("percent");
+buttonPercent.addEventListener("click", function () {
+    let percent = document.getElementById("result").innerHTML * 100;
+    update(percent);
+    return;
 });
 
 // Initialize result array
@@ -102,16 +111,34 @@ let temp = null;
 
 function operate(operator,a,b) {
     if (operator == "add") {
-        return a+b;
+        return (a+b).toFixed(2);
     }
     else if (operator == "subtract") {
-        return a-b;
+        return (a-b).toFixed(2);
     }
     else if (operator == "multiply") {
-        return a*b;
+        return (a*b).toFixed(2);
     }
     else if (operator == "divide") {
-        return a/b
+        return (a/b).toFixed(2);
+    }
+}
+
+
+function operation(sign) {
+    if (a === null) {
+    a = parseFloat(document.getElementById("result").innerHTML);
+    document.getElementById("result").innerHTML = "";
+    resultArray = [];
+    operator = sign;
+    return; 
+    }
+    else if (b === null) {
+    b = parseFloat(document.getElementById("result").innerHTML);
+    document.getElementById("result").innerHTML = "";
+    resultArray = [];
+    operator = sign;
+    return;
     }
 }
 
