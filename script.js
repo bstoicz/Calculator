@@ -143,25 +143,19 @@ function operation(sign) {
 }
 
 //Dark-mode function
+    //set the document default theme as dark
+    document.documentElement.className = "theme-dark";
 
-    // set local storage theme
+    //function to set the entire document theme
     function setTheme(themeName) {
-        localStorage.setItem('theme', themeName);
         document.documentElement.className = themeName;
     }
-    // light/dark toggle
+    // check what theme to set based on slider position
     function themeToggle() {
-        if (localStorage.getItem('theme') === 'theme-light'){
+        let checked = document.getElementById("slider").checked;
+        if (checked == true){
             setTheme('theme-dark');
         } else {
             setTheme('theme-light');
         }
     }
-
-    (() => {
-        if (localStorage.getItem('theme') === 'theme-light') {
-            setTheme('theme-light');
-        } else {
-            setTheme('theme-dark');
-        }
-    })();
