@@ -144,24 +144,24 @@ function operation(sign) {
 
 //Dark-mode function
 
-// set local storage theme
-function setTheme(themeName) {
-    localStorage.setItem('theme', themeName);
-    document.documentElement.className = themeName;
-}
-// light/dark toggle
-function themeToggle() {
-    if (localStorage.getItem('theme') === 'theme-dark'){
-        setTheme('theme-light');
-    } else {
-        setTheme('theme-dark');
+    // set local storage theme
+    function setTheme(themeName) {
+        localStorage.setItem('theme', themeName);
+        document.documentElement.className = themeName;
     }
-}
+    // light/dark toggle
+    function themeToggle() {
+        if (localStorage.getItem('theme') === 'theme-light'){
+            setTheme('theme-dark');
+        } else {
+            setTheme('theme-light');
+        }
+    }
 
-(() => {
-    if (localStorage.getItem('theme') === 'theme-dark') {
-        setTheme('theme-dark');
-    } else {
-        setTheme('theme-light');
-    }
-})();
+    (() => {
+        if (localStorage.getItem('theme') === 'theme-light') {
+            setTheme('theme-light');
+        } else {
+            setTheme('theme-dark');
+        }
+    })();
